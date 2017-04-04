@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- to be filled by the Python script -->
+<h1>{{ the_title }}</h1>
+
+<!-- note how items from the "static" folder are linked -->
+<img alt="{{ image_alt }}" src="{{ url_for('static', filename=image_file) }}">
+{% autoescape false %}
+<p class="credit">{{ image_credit }}</p>
+{% endautoescape %}
+
+<p>This is a page in my example Flask app.</p>
+
+<ul>
+{% for item in data %}
+
+  <li><a href="{{ url_for('page', slug=item.slug) }}">{{ item.the_title }}</a></li>
+
+{% endfor %}
+</ul>
+
+{% autoescape false %}
+{{ textfile }}
+{% endautoescape %}
+
+{% endblock %}
